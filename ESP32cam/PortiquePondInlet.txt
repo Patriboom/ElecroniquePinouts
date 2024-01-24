@@ -1,0 +1,22 @@
+
+Caméra de suveillance et allumage de lumière - portique de Pond Inlet  Janvier 2024
+
+Orange		: VCC (5V)
+blanc-orange	: GPIO-02	---> Gestion du signal de déctection présence
+Brun			: GND (0V)
+blanc-brun	: TDX (Programmation du ESP32cam)
+
+Bleu			: RDX (Programmation du ESP32cam)
+blanc-bleu	: non soudé   ---> Non utilisé pour le moment ... est-il défectueux, je ne sais pas, mais il a été déconnecté à la faveur du blanc-brun
+Vert			: GSL-MCLK (Programmation du ESP32cam)
+blanc-vert	: GND (Programmation du ESP32cam)
+
+
+Câble de transfert (oui, oui, câble à bouts Dupont et USB, voir dans le tirroir du classeur métalique)
+	Sur les quatre première broches (de six, dont la 5e est double, avec jumper)
+	Broche 1:  fil rouge
+	Broche 2: fil vert
+	Broche 3: fil blanc
+	Broche 4: fil noir
+	Broche 5: GND jumper à faire jumper avec le signal
+	Broche 6: Signal GSL-MCLK

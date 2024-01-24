@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html class="js-ready" lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<link rel="mask-icon" href="https://learn.adafruit.com/assets/adafruit_favicon-d77f206e6cc65b40101b6e5b8987f7c35cb6a283ea73c0adad50c37f7347c61a.svg" color="#000000">
+<link rel="shortcut icon" type="image/x-icon" href="https://learn.adafruit.com/assets/favicon-0c79bd4bc582e6d4cf3afe417bd1e28120527c09d92c08a6464690c5bf6b85f4.ico">
+<title>MCP3008 | Raspberry Pi Analog to Digital Converters | Adafruit Learning System</title>
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="EEN3NYq0S2vcVGtSKzOQ4MXlRyxzXxoeV5957FfyGHKKeQ/YLp1HE0WkYHzMqiNaMwI6U4OIlBldCcfhX8cDNA==">
+<link rel="alternate" type="application/atom+xml" title="ATOM" href="https://learn.adafruit.com/feed">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://learn.adafruit.com/feed.rss">
+<link rel="stylesheet" media="screen" href="AnalogDigitalConverter_MCP3008_fichiers/application-83e169de1ea8499e7cf3c521ca53242fc23107dc90c59ba5.css" data-turbolinks-track="reload">
+<script type="text/javascript" src="AnalogDigitalConverter_MCP3008_fichiers/308175db61"></script><script src="AnalogDigitalConverter_MCP3008_fichiers/nr-1099.js"></script><script type="text/javascript" async="" src="AnalogDigitalConverter_MCP3008_fichiers/ec.js"></script><script type="text/javascript" async="" src="AnalogDigitalConverter_MCP3008_fichiers/analytics.js"></script><script src="AnalogDigitalConverter_MCP3008_fichiers/js.js"></script>
+<script type="text/javascript">
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="turbolinks-cache-control" content="no-cache">
+<meta name="guide-title" content="Raspberry Pi Analog to Digital Converters">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@adafruit">
+<meta name="twitter:title" content="Raspberry Pi Analog to Digital Converters">
+<meta name="twitter:description" content="How to read analog signals from Python with an analog to digital converter and Raspberry Pi.">
+<meta name="twitter:image:src" content="https://cdn-learn.adafruit.com/guides/images/000/001/237/medium800/IMG_4535.JPG">
+<meta name="twitter:domain" content="https://learn.adafruit.com">
+<link rel="canonical" href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/mcp3008">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"308175db61","applicationID":"54271218","transactionName":"cVZXRUFeWghRShtEVlVcSh5AWVkT","queueTime":0,"applicationTime":30,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1099.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+<!--[if lte IE 9]>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <![endif]-->
+<script>
+    window.rails_env = 'production';
+  </script>
+<script src="AnalogDigitalConverter_MCP3008_fichiers/application-85ff44dd0d3d9af3642e.js" data-turbolinks-track="reload"></script>
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": "https://learn.adafruit.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://learn.adafruit.com/search?q={search_term}",
+        "query-input": "required name=search_term"
+      }
+    }
+  </script>
+<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+<body class="application pages show">
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRPXBQ6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div id="outer-wrapper">
+<div id="inner-wrapper">
+<div id="messaging-wrapper" data-load="https://www.adafruit.com/api/multi_message.php"><div id="messaging-alert" class="messaging-container"><div class="msg-container container"><div class="message" data-message-id="81">Adafruit will not be shipping orders <a href="https://www.adafruit.com/holiday">Election Day,</a> <a href="https://blog.adafruit.com/2018/10/30/adafruit-not-shipping-orders-on-election-day-tuesday-november-6-vote-makethevote/">Tuesday November 6</a>. Expedited orders placed after 11am ET Monday November 5 will go out Wednesday November 7.</div><a class="message-close" href="#"><i class="fa fa-times"></i></a></div></div><div class="clear" <="" div=""></div></div>
+<header id="adafruit-header">
+<div id="small-header-content" class="container visible-xs">
+<a id="small-header-menu-button" class="menu-link" href="#small-header-nav">
+<i class="fa fa-bars"> </i>
+</a>
+<div class="small-header-logo">
+<a href="https://www.adafruit.com/">
+<img id="small-logo" alt="Adafruit Logo" title="Happy Halloween!" src="AnalogDigitalConverter_MCP3008_fichiers/adafruit_logo_small.png" height="50" width="50">
+</a> </div>
+<a class="small-header-cart" href="https://www.adafruit.com/shopping_cart">
+<span class="small-cart-count">0</span>
+<i class="fa fa-shopping-cart"></i>
+</a> </div>
+<nav id="small-header-nav" role="navigation" class="visible-xs">
+<div class="block">
+<ul>
+<li>
+<div id="small-search-wrapper">
+<div id="small-search-inner-wrapper">
+<form action="https://learn.adafruit.com/search" method="get">
+<label for="mobile-search" style="display:none;">Search</label>
+<input id="mobile-search" name="q" placeholder="Search Adafruit" type="text">
+<i class="fa fa-search"></i>
+</form>
+</div>
+</div>
+</li>
+<li>
+<a href="https://www.adafruit.com/categories">SHOP</a>
+</li>
+<li>
+<a href="https://blog.adafruit.com/">BLOG</a>
+</li>
+<li>
+<a href="https://learn.adafruit.com/">LEARN</a>
+</li>
+<li>
+<a href="https://forums.adafruit.com/">FORUMS</a>
+</li>
+<li>
+<a href="https://www.youtube.com/adafruit">VIDEOS</a>
+</li>
+<li>
+<a href="https://learn.adafruit.com/users/sign_in">SIGN IN</a>
+</li>
+<li>
+<a class="close-btn" id="small-nav-close-button" href="#top">CLOSE MENU</a>
+</li>
+</ul>
+</div>
+</nav>
+<div id="header-content" class="container hidden-xs">
+<div id="header-profile">
+<a id="header-cart" href="https://www.adafruit.com/shopping_cart">
+0 Items <i class="fa fa-shopping-cart"></i>
+</a> <div id="account">
+<a href="https://learn.adafruit.com/users/sign_in">Sign In</a>
+</div>
+<div id="search-wrapper">
+<form action="/search" method="get">
+<label for="search" style="display:none;">Search</label>
+<input id="search" name="q" autocomplete="off" data-page="" ,="" data-app-id="W9DMM4OTH0" data-app-key="e613bcda3453b9ef887e2724362f9e57" data-app-index="learn_guides_production" data-app-uri="https://learn.adafruit.com" type="text">
+<i class="fa fa-search"></i>
+<input style="visibility: hidden; position: fixed;" type="submit">
+</form>
+</div>
+</div>
+<div id="navigation">
+<a href="https://www.adafruit.com/">
+<img id="logo" alt="Adafruit Logo" title="Happy Halloween!" src="AnalogDigitalConverter_MCP3008_fichiers/logo_2x.png" height="60" width="172">
+</a> <nav class="hover-menu">
+<ul>
+<li id="nav-shop" data-load="https://www.adafruit.com/api/flyouts/shop.html"><a href="https://www.adafruit.com/">SHOP</a>
+</li>
+<li id="nav-blog" data-load="https://blog.adafruit.com/adafruit-blog-flyouts"><a href="https://blog.adafruit.com/">BLOG</a>
+</li>
+<li id="nav-learn" data-load="https://learn.adafruit.com/api/hover-menu/flyouts/learn.html"><a href="https://learn.adafruit.com/">LEARN</a>
+</li>
+<li id="nav-forums"><a href="https://forums.adafruit.com/">FORUMS</a>
+</li>
+<li id="nav-forums"><a href="https://www.youtube.com/adafruit">VIDEOS</a>
+</li>
+<li class="visible-lg"><a href="https://www.adabox.com/">ADABOX</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</header>
+<div id="main-content">
+<div id="page-wrapper" class="">
+<div id="content-wrapper" class="container" data-page-id="6918" data-guide-id="1237">
+<div class="row">
+<div class="sidebar-left-wrapper hidden-phone hidden-tablet col-lg-two-and-half col-md-3 col-sm-4 col-xs-12">
+<div class="sidebar-left-content affix" data-clampedwidth=".sidebar-left-wrapper" style="width: 255px;">
+<nav class="sidebar-left">
+<div class="title-bar">
+<div class="image-container">
+<img class="image-preview" data-error="/assets/missing%2Fmissing.png" src="AnalogDigitalConverter_MCP3008_fichiers/IMG_4535.JPG">
+</div>
+<div class="title">
+<h1><a href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/overview">Raspberry Pi Analog to Digital Converters</a></h1>
+<span class="tagline"><a href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/overview">How to read analog signals from Python with an analog to digital converter and Raspberry Pi.</a></span>
+</div>
+</div>
+<ul class="page-parent nav">
+<li class="parent ">
+<a class="sidebar-parent published" href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/overview">Overview</a>
+</li>
+<li class="parent active">
+<a class="sidebar-parent published" href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/mcp3008">MCP3008</a>
+</li>
+<li class="parent ">
+<a class="sidebar-parent published" href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/ads1015-slash-ads1115">ADS1015 / ADS1115</a>
+</li>
+<li class="single-page-spacer"></li>
+<li class="single-page-link ">
+<a href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/featured_products">Featured Products</a>
+</li>
+<li class="single-page-link"><a href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters?view=all">Single Page</a></li>
+<li><a href="https://cdn-learn.adafruit.com/downloads/pdf/raspberry-pi-analog-to-digital-converters.pdf">Download PDF</a></li>
+</ul>
+</nav>
+<header class="sidebar-meta hidden-xs">
+<h4>Contributors</h4>
+<div><a href="https://learn.adafruit.com/users/tdicola">Tony DiCola</a></div>
+</header>
+<header class="sidebar-meta hidden-xs">
+<a class="feedback-link" title="Feedback? Corrections?" rel="nofollow" data-remote="true" data-method="get" href="https://learn.adafruit.com/pages/6918/settings_modal">
+Feedback? Corrections?
+</a> </header>
+</div>
+</div>
+<article class="col-lg-7 col-md-6 col-sm-8 col-xs-12">
+<div id="categories">
+<span class="category ">
+<a href="https://learn.adafruit.com/category/sensors">SENSORS</a>
+</span>
+<span class="category child-category">
+<a href="https://learn.adafruit.com/category/raspberry-pi">RASPBERRY PI</a>
+<span class="category-link-spacer">/</span>
+<a href="https://learn.adafruit.com/category/learn-raspberry-pi">LEARN RASPBERRY PI</a>
+</span>
+<span class="category child-category">
+<a href="https://learn.adafruit.com/category/programming">PROGRAMMING</a>
+<span class="category-link-spacer">/</span>
+<a href="https://learn.adafruit.com/category/python">PYTHON</a>
+</span>
+<span id="guide-favorite">
+<a class="favorites-link category right red" title="" data-toggle="tooltip" data-placement="left" data-remote="true" rel="nofollow" data-method="post" href="https://learn.adafruit.com/guides/1237/favorites.js" data-original-title="Favorite this guide?">
+<i class="fa fa-heart-o"></i>
+</a></span>
+</div>
+<div class="content">
+<div class="page-title-wrapper">
+<h1 class="headline">
+<span id="mcp3008">MCP3008</span>
+</h1>
+<div class="author">by
+<a href="https://learn.adafruit.com/users/tdicola">
+<span class="name">Tony DiCola</span>
+</a> </div>
+</div>
+<div class="page-content">
+<div class="row-fluid build-image">
+<a href="https://learn.adafruit.com/assets/30466">
+<img class="30466-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/030/466/medium260/sensors_mcp_hero.jpg?1455021611 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/466/medium640/sensors_mcp_hero.jpg?1455021611 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/466/medium800/sensors_mcp_hero.jpg?1455021611 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/466/large1024/sensors_mcp_hero.jpg?1455021611 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="AnalogDigitalConverter_MCP3008_fichiers/sensors_mcp_hero.jpg" alt="sensors_mcp_hero.jpg">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid build-text">
+<p>The <a href="https://www.adafruit.com/product/856">MCP3008</a>&nbsp;is
+ a low cost 8-channel 10-bit analog to digital converter. &nbsp;The 
+precision of this ADC is similar to that of an Arduino Uno, and with 8 
+channels you can read quite a few analog signals from the Pi. &nbsp;This
+ chip is a great option if you just need to read simple analog signals, 
+like from a temperature or light sensor. &nbsp;If you need more 
+precision or features, check out the ADS1x115 series on the next page.</p>
+<p>Before you use the MCP3008&nbsp;it will help to skim this <a href="https://learn.adafruit.com/reading-a-analog-in-and-controlling-audio-volume-with-the-raspberry-pi">older Raspberry Pi MCP3008 guide</a>&nbsp;for more information about using it with the Raspberry Pi. &nbsp;However <strong>don't</strong>
+ use the code from the older&nbsp;guide as it's deprecated. &nbsp;This 
+guide will show you an easier way to install and use new Python code to 
+talk to the MCP3008 ADC.</p>
+<a href="AnalogDigitalConverter_MCP3008.pdf"><img src="AnalogDigitalConverter_MCP3008_fichiers/LogoPDF.jpg" width="150" height="150" alt=""></a>
+<a href="AnalogDigitalConverter_MCP3008_details.pdf"><img src="AnalogDigitalConverter_MCP3008_fichiers/LogoPDF.jpg" width="225" height="225" alt=""></a>
+<p>The <a href="http://www.adafruit.com/datasheets/MCP3008.pdf">MCP3008 datasheet</a>&nbsp;is also an important resource to skim and have handy.</p>
+</div>
+<div class="row-fluid build-text">
+<h1>
+<a href="#wiring-2-3" class="anchor-link"><span class="fa fa-link"></span></a><span id="wiring-2-3" class="anchor-link-target"></span><span id="wiring" class="anchor-link-target"></span>Wiring</h1>
+<p>The MCP3008 connects to the Raspberry Pi using a SPI serial 
+connection. &nbsp;You can use either the hardware SPI bus, or any four 
+GPIO pins and software SPI to talk to the MCP3008. &nbsp;Software SPI is
+ a little more flexible since it can work with any pins on the Pi, 
+whereas hardware SPI is slightly faster but less flexible because it 
+only works with specific pins. &nbsp;If you aren't sure which to use I 
+recommend software SPI as it's easier to setup.</p>
+<p>Before you can wire the chip to the Pi you first need to place it 
+into a breadboard. &nbsp;If you haven't used bare DIP chips like the 
+MCP3008 before you want to press it into the breadboard so its legs 
+straddle the empty channel in the middle of the breadboard. &nbsp;This 
+way you can access each of the legs of the chip from the breadboard.</p>
+<p>Note that the orientation of the chip matters! &nbsp;Be sure to place
+ it with the half circle indention and dot towards the top. &nbsp;See 
+the photo below for an example:</p>
+</div>
+<div class="row-fluid build-image">
+<a href="https://learn.adafruit.com/assets/30465">
+<img class="30465-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/030/465/medium260/sensors_mcp_orient.jpg?1455021530 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/465/medium640/sensors_mcp_orient.jpg?1455021530 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/465/medium800/sensors_mcp_orient.jpg?1455021530 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/465/large1024/sensors_mcp_orient.jpg?1455021530 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="AnalogDigitalConverter_MCP3008_fichiers/sensors_mcp_orient.jpg" alt="sensors_mcp_orient.jpg">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid build-text">
+<p>Once the chip is in the breadboard then you're ready to connect it to
+ the Pi. &nbsp;Each of the legs of the MCP3008 chip have the following 
+names:</p>
+</div>
+<div class="row-fluid build-image">
+<a href="https://learn.adafruit.com/assets/30456">
+<img class="30456-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/030/456/medium260/sensors_raspberry_pi_mcp3008pin.gif?1455010861 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/456/medium640/sensors_raspberry_pi_mcp3008pin.gif?1455010861 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/456/medium800/sensors_raspberry_pi_mcp3008pin.gif?1455010861 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/456/large1024/sensors_raspberry_pi_mcp3008pin.gif?1455010861 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="AnalogDigitalConverter_MCP3008_fichiers/sensors_raspberry_pi_mcp3008pin.gif" alt="sensors_raspberry_pi_mcp3008pin.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid build-alert alert-danger">
+<div class="alert">
+<i class="fa fa-exclamation-circle"></i>
+Remember the orientation of the chip matters and you MUST have it with 
+the half circle indentation towards the top like the diagram above!
+</div>
+</div>
+<div class="row-fluid build-text">
+<h2>
+<a href="#software-spi-2-8" class="anchor-link"><span class="fa fa-link"></span></a><span id="software-spi-2-8" class="anchor-link-target"></span><span id="software-spi" class="anchor-link-target"></span>Software SPI</h2>
+<p>To connect the MCP3008 to the Raspberry Pi with a software SPI connection you need to make the following connections:</p>
+<ul>
+<li>
+<strong>MCP3008 VDD</strong> to <strong>Raspberry Pi 3.3V</strong>
+</li>
+<li>
+<strong>MCP3008 VREF</strong> to <strong>Raspberry Pi 3.3V</strong>
+</li>
+<li>
+<strong>MCP3008 AGND</strong> to <strong>Raspberry Pi GND</strong>
+</li>
+<li>
+<strong>MCP3008 DGND</strong> to <strong>Raspberry Pi GND</strong>
+</li>
+<li>
+<strong>MCP3008 CLK</strong> to <strong>Raspberry Pi pin 18</strong>
+</li>
+<li>
+<strong>MCP3008 DOUT</strong> to <strong>Raspberry Pi pin 23</strong>
+</li>
+<li>
+<strong>MCP3008 DIN</strong> to <strong>Raspberry Pi pin 24</strong>
+</li>
+<li>
+<strong>MCP3008 CS/SHDN</strong> to <strong>Raspberry Pi pin 25</strong>
+</li>
+</ul>
+<br clear="all">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/AnalogNum_Rasp_Option.jpg" alt="">
+<br clear="all">
+
+<p>Note that you can swap the MCP3008 CLK, DOUT, DIN, and CS/SHDN pins 
+to any other free digital GPIO pins on the Raspberry Pi. &nbsp;You'll 
+just need to modify the example code to use your pins.</p>
+</div>
+<div class="row-fluid build-text">
+<h2>
+	<a href="#hardware-spi-2-9" class="anchor-link"><span class="fa fa-link"></span></a>
+	<span id="hardware-spi-2-9" class="anchor-link-target"></span>
+	<span id="hardware-spi" class="anchor-link-target"></span>
+	<b>Hardware SPI</b> : Patrick, voici le style que j'utilise
+</h2>
+<p>To use hardware SPI first make sure you've <a href="http://www.raspberrypi-spy.co.uk/2014/08/enabling-the-spi-interface-on-the-raspberry-pi/">enabled SPI using the raspi-config tool</a>.
+ &nbsp;( En ligne de commande:  <i><b>sudo raspi-config</b></i>  )&nbsp;&nbsp;
+ &nbsp;Be sure to answer yes to both enabling the SPI interface and 
+loading the SPI kernel module, then reboot the Pi. &nbsp;Check you can 
+see a /dev/spidev0.0 and /dev/spidev0.1 device when you run the <b><i>ls -l /dev/spi*</i></b> command before continuing.</p>
+<p>Now&nbsp;wire the MCP3008 to the Raspberry Pi as follows:</p>
+<ul>
+<li>
+<strong>MCP3008 VDD</strong> (16) to <strong>Raspberry Pi 3.3V</strong>&nbsp;&nbsp;(17)
+</li>
+<li>
+<strong>MCP3008 VREF</strong> (15) to <strong>Raspberry Pi 3.3V</strong>&nbsp;&nbsp;(17)
+</li>
+<li>
+<strong>MCP3008 AGND</strong> (14) to <strong>Raspberry Pi GND</strong>&nbsp;&nbsp;(25)
+</li>
+<li>
+<strong>MCP3008 DGND</strong> (9) to <strong>Raspberry Pi GND</strong>&nbsp;&nbsp;(25)
+</li>
+<li>
+<strong>MCP3008 CLK</strong> (13) to <strong>Raspberry Pi&nbsp;SCLK</strong>&nbsp;&nbsp;(23)
+</li>
+<li>
+<strong>MCP3008 DOUT</strong> (12) to <strong>Raspberry Pi&nbsp;MISO</strong>&nbsp;&nbsp;(21)
+</li>
+<li>
+<strong>MCP3008 DIN</strong> (11) to <strong>Raspberry Pi MOSI</strong>&nbsp;&nbsp;(19)
+</li>
+<li>
+<strong>MCP3008 CS/SHDN</strong> (10) to <strong>Raspberry Pi&nbsp;CE0</strong>&nbsp;&nbsp;(24)
+</li>
+</ul>
+<br clear="all">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/AnalogNum_Rasp.jpg" alt="">
+<br clear="all">
+</div>
+<div class="row-fluid build-text">
+<h1>
+<a href="#library-install-2-10" class="anchor-link"><span class="fa fa-link"></span></a><span id="library-install-2-10" class="anchor-link-target"></span><span id="library-install" class="anchor-link-target"></span>Library Install</h1>
+<p>After you've wired the MCP3008 to the Raspberry Pi with either the software or hardware SPI wiring you're ready to install the <a href="https://github.com/adafruit/Adafruit_Python_MCP3008">Adafruit MCP3008 Python library</a>.</p>
+<p>You can install the library from the Python package index with a few 
+commands, or you can install the library from its source on GitHub. 
+&nbsp;Pick one of these options below. &nbsp;If you aren't sure I 
+recommend installing from <a href="https://github.com/adafruit/Adafruit_Python_MCP3008">source on GitHub</a>&nbsp;because it will also download examples to use the library.</p>
+<p>Note that before you install the library your Raspberry Pi <strong>must</strong> be connected to the internet through a wired or wireless network connection.</p>
+</div>
+<div class="row-fluid build-text">
+<h2>
+<a href="#source-install-2-11" class="anchor-link"><span class="fa fa-link"></span></a><span id="source-install-2-11" class="anchor-link-target"></span><span id="source-install" class="anchor-link-target"></span>Source Install</h2>
+<p>To install from the source on Github connect to a terminal on the Raspberry Pi and run the following commands:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630338/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">sudo apt-get update
+sudo apt-get install build-essential python-dev python-smbus git
+cd ~
+git clone https://github.com/adafruit/Adafruit_Python_MCP3008.git
+cd Adafruit_Python_MCP3008
+sudo python setup.py install</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update</span></li><li class="L1"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install build</span><span class="pun">-</span><span class="pln">essential python</span><span class="pun">-</span><span class="pln">dev python</span><span class="pun">-</span><span class="pln">smbus git</span></li><li class="L2"><span class="pln">cd </span><span class="pun">~</span></li><li class="L3"><span class="pln">git clone https</span><span class="pun">:</span><span class="com">//github.com/adafruit/Adafruit_Python_MCP3008.git</span></li><li class="L4"><span class="pln">cd </span><span class="typ">Adafruit_Python_MCP3008</span></li><li class="L5"><span class="pln">sudo python setup</span><span class="pun">.</span><span class="pln">py install</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p>You should see the library install succeed and finish with a message similar to the following:</p>
+</div>
+<div class="row-fluid build-image">
+<a href="https://learn.adafruit.com/assets/30457">
+<img class="30457-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/030/457/medium260/sensors_Screenshot_from_2016-02-09_02_09_04.png?1455012589 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/457/medium640/sensors_Screenshot_from_2016-02-09_02_09_04.png?1455012589 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/457/medium800/sensors_Screenshot_from_2016-02-09_02_09_04.png?1455012589 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/457/large1024/sensors_Screenshot_from_2016-02-09_02_09_04.png?1455012589 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="AnalogDigitalConverter_MCP3008_fichiers/sensors_Screenshot_from_2016-02-09_02_09_04.png" alt="sensors_Screenshot_from_2016-02-09_02_09_04.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid build-text">
+<p>If you see an error go back and carefully check all the previous commands were run, and that they didn't fail with an error.</p>
+
+</div>
+<div class="row-fluid build-text">
+<h2>
+<a href="#python-package-index-install-2-16" class="anchor-link"><span class="fa fa-link"></span></a><span id="python-package-index-install-2-16" class="anchor-link-target"></span><span id="python-package-index-install" class="anchor-link-target"></span>Python Package Index Install</h2>
+<p>To install from the <a href="https://pypi.python.org/pypi">Python package index</a>&nbsp;connect to a terminal on the Raspberry Pi and execute the following commands:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630343/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">sudo apt-get update
+sudo apt-get install build-essential python-dev python-smbus python-pip
+sudo pip install adafruit-mcp3008</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update</span></li><li class="L1"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install build</span><span class="pun">-</span><span class="pln">essential python</span><span class="pun">-</span><span class="pln">dev python</span><span class="pun">-</span><span class="pln">smbus python</span><span class="pun">-</span><span class="pln">pip</span></li><li class="L2"><span class="pln">sudo pip install adafruit</span><span class="pun">-</span><span class="pln">mcp3008</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p>You should see a message like the following that the library&nbsp;was successfully installed:</p>
+</div>
+<div class="row-fluid build-image">
+<a href="https://learn.adafruit.com/assets/30458">
+<img class="30458-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/030/458/medium260/sensors_Screenshot_from_2016-02-09_02_13_13.png?1455012828 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/458/medium640/sensors_Screenshot_from_2016-02-09_02_13_13.png?1455012828 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/458/medium800/sensors_Screenshot_from_2016-02-09_02_13_13.png?1455012828 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/458/large1024/sensors_Screenshot_from_2016-02-09_02_13_13.png?1455012828 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="AnalogDigitalConverter_MCP3008_fichiers/sensors_Screenshot_from_2016-02-09_02_13_13.png" alt="sensors_Screenshot_from_2016-02-09_02_13_13.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid build-text">
+<p>Note that if you install from the Python package index you <strong>won't</strong> have the example code for the library. &nbsp;You'll need to <a href="https://github.com/adafruit/Adafruit_Python_MCP3008/tree/master/examples">download these MCP3008 examples</a>&nbsp;to the Pi manually and run them in the next section.</p>
+</div>
+<div class="row-fluid build-text">
+<h1>
+<a href="#library-usage-2-21" class="anchor-link"><span class="fa fa-link"></span></a><span id="library-usage-2-21" class="anchor-link-target"></span><span id="library-usage" class="anchor-link-target"></span>Library Usage</h1>
+<p>To learn how to use the library I'll walk through some of the example
+ code included with it. &nbsp;These examples are in the examples folder 
+if you downloaded and installed the library from source. &nbsp;Change to
+ that folder by running on the Pi:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630348/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">cd ~/Adafruit_Python_MCP3008/examples</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">cd </span><span class="pun">~</span><span class="str">/Adafruit_Python_MCP3008/</span><span class="pln">examples</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p><strong>Note: If you installed the library from the Python package index using the pip command you won't have <a href="https://github.com/adafruit/Adafruit_Python_MCP3008/tree/master/examples">the example code</a>&nbsp;and will need to download it to the Pi manually.</strong></p>
+<p>We'll start by looking at the <a href="https://github.com/adafruit/Adafruit_Python_MCP3008/blob/master/examples/simpletest.py">simpletest.py</a>&nbsp;example
+ which is a basic example of reading and displaying the ADC channel 
+values. &nbsp;First let's open the file to configure it to use software 
+or hardware SPI. &nbsp;Run the following command to open the file in the
+ nano text editor:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630350/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">nano simpletest.py</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">nano simpletest</span><span class="pun">.</span><span class="pln">py</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p>Now scroll down to the following block of code near the top:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630352/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;"># Software SPI configuration:
+CLK  = 18
+MISO = 23
+MOSI = 24
+CS   = 25
+mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+
+# Hardware SPI configuration:
+# SPI_PORT   = 0
+# SPI_DEVICE = 0
+# mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="com"># Software SPI configuration:</span></li><li class="L1"><span class="pln">CLK  </span><span class="pun">=</span><span class="pln"> </span><span class="lit">18</span></li><li class="L2"><span class="pln">MISO </span><span class="pun">=</span><span class="pln"> </span><span class="lit">23</span></li><li class="L3"><span class="pln">MOSI </span><span class="pun">=</span><span class="pln"> </span><span class="lit">24</span></li><li class="L4"><span class="pln">CS   </span><span class="pun">=</span><span class="pln"> </span><span class="lit">25</span></li><li class="L5"><span class="pln">mcp </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Adafruit_MCP3008</span><span class="pun">.</span><span class="pln">MCP3008</span><span class="pun">(</span><span class="pln">clk</span><span class="pun">=</span><span class="pln">CLK</span><span class="pun">,</span><span class="pln"> cs</span><span class="pun">=</span><span class="pln">CS</span><span class="pun">,</span><span class="pln"> miso</span><span class="pun">=</span><span class="pln">MISO</span><span class="pun">,</span><span class="pln"> mosi</span><span class="pun">=</span><span class="pln">MOSI</span><span class="pun">)</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com"># Hardware SPI configuration:</span></li><li class="L8"><span class="com"># SPI_PORT   = 0</span></li><li class="L9"><span class="com"># SPI_DEVICE = 0</span></li><li class="L0"><span class="com"># mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p>By default this section of code configures the chip to use the 
+software SPI configuration described in the previous section. &nbsp;If 
+you used different pins for your software SPI setup be sure to change 
+the values of CLK, MISO, MOSI, CS to the pins you used.</p>
+<p>If you used hardware SPI then you'll need to comment out the software
+ SPI section and uncomment the hardware SPI section. &nbsp;The 
+configuration should look like this for hardware SPI:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630354/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;"># Software SPI configuration:
+# CLK  = 18
+# MISO = 23
+# MOSI = 24
+# CS   = 25
+# mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+
+# Hardware SPI configuration:
+SPI_PORT   = 0
+SPI_DEVICE = 0
+mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="com"># Software SPI configuration:</span></li><li class="L1"><span class="com"># CLK  = 18</span></li><li class="L2"><span class="com"># MISO = 23</span></li><li class="L3"><span class="com"># MOSI = 24</span></li><li class="L4"><span class="com"># CS   = 25</span></li><li class="L5"><span class="com"># mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com"># Hardware SPI configuration:</span></li><li class="L8"><span class="pln">SPI_PORT   </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span></li><li class="L9"><span class="pln">SPI_DEVICE </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span></li><li class="L0"><span class="pln">mcp </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Adafruit_MCP3008</span><span class="pun">.</span><span class="pln">MCP3008</span><span class="pun">(</span><span class="pln">spi</span><span class="pun">=</span><span class="pln">SPI</span><span class="pun">.</span><span class="typ">SpiDev</span><span class="pun">(</span><span class="pln">SPI_PORT</span><span class="pun">,</span><span class="pln"> SPI_DEVICE</span><span class="pun">))</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p>Now save the file by pressing <strong>Ctrl-o</strong>, <strong>enter</strong>, then <strong>Ctrl-x</strong> to quit. &nbsp;You can run the <strong>simpletest.py</strong> code by executing at the terminal:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630356/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">sudo python simpletest.py</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo python simpletest</span><span class="pun">.</span><span class="pln">py</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p>The example will print out a table with all of the ADC channels and 
+their values. &nbsp;Every half second a new row will be printed with the
+ latest channel values. &nbsp;For example you might see output like:</p>
+</div>
+<div class="row-fluid build-image">
+<a href="https://learn.adafruit.com/assets/30459">
+<img class="30459-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/030/459/medium260/sensors_Screenshot_from_2016-02-09_02_30_13.png?1455013823 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/459/medium640/sensors_Screenshot_from_2016-02-09_02_30_13.png?1455013823 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/459/medium800/sensors_Screenshot_from_2016-02-09_02_30_13.png?1455013823 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/030/459/large1024/sensors_Screenshot_from_2016-02-09_02_30_13.png?1455013823 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="AnalogDigitalConverter_MCP3008_fichiers/sensors_Screenshot_from_2016-02-09_02_30_13.png" alt="sensors_Screenshot_from_2016-02-09_02_30_13.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid build-text">
+<p>Each column represents a different channel and the header on the 
+first row shows the channel number (from 0 to 7, 8 channels total). 
+&nbsp;The value for each channel is the ADC value for that channel. 
+&nbsp;This is a number that ranges from 0 to 1023, where 0 means the 
+signal is at a ground level, and 1023 means it's at the AREF value 
+(3.3V) or higher. &nbsp;In between values are proportional to each 
+other, so a value of 512 is about 3.3 / 2 or 1.65 volts.</p>
+<p>Press <strong>Ctrl-c</strong> to stop the example.</p>
+<p>Try connecting a potentiometer to one of the analog inputs. 
+&nbsp;Connect the middle leg of the potentiometer (the wiper) to an 
+analog input, then connect one of the other legs to Pi 3.3V and the 
+other leg to Pi ground. &nbsp;Run the example and twist the 
+potentiometer around. &nbsp;You should see the ADC value change and get 
+lower as the voltage from the potentiometer decreases, and get higher as
+ the voltage increases!</p>
+<p>To understand how the code works open the <strong>simpletest.py</strong> example in nano again. &nbsp;Now scroll down to the main loop at the bottom:</p>
+</div>
+<div class="build-code code-element">
+<div class="download-code">
+<a href="https://learn.adafruit.com/pages/6918/elements/1630360/download">
+<i class="fa fa-cloud-download"></i>
+Download file
+</a> <div class="code-copy-container">
+<a href="#" class="code-copy-button hidden-xs">Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">print('Reading MCP3008 values, press Ctrl-C to quit...')
+# Print nice channel column headers.
+print('| {0:&gt;4} | {1:&gt;4} | {2:&gt;4} | {3:&gt;4} | {4:&gt;4} | {5:&gt;4} | {6:&gt;4} | {7:&gt;4} |'.format(*range(8)))
+print('-' * 57)
+# Main program loop.
+while True:
+    # Read all the ADC channel values in a list.
+    values = [0]*8
+    for i in range(8):
+        # The read_adc function will get the value of the specified channel (0-7).
+        values[i] = mcp.read_adc(i)
+    # Print the ADC values.
+    print('| {0:&gt;4} | {1:&gt;4} | {2:&gt;4} | {3:&gt;4} | {4:&gt;4} | {5:&gt;4} | {6:&gt;4} | {7:&gt;4} |'.format(*values))
+    # Pause for half a second.
+    time.sleep(0.5)</pre>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="kwd">print</span><span class="pun">(</span><span class="str">'Reading MCP3008 values, press Ctrl-C to quit...'</span><span class="pun">)</span></li><li class="L1"><span class="com"># Print nice channel column headers.</span></li><li class="L2"><span class="kwd">print</span><span class="pun">(</span><span class="str">'| {0:&gt;4} | {1:&gt;4} | {2:&gt;4} | {3:&gt;4} | {4:&gt;4} | {5:&gt;4} | {6:&gt;4} | {7:&gt;4} |'</span><span class="pun">.</span><span class="pln">format</span><span class="pun">(*</span><span class="pln">range</span><span class="pun">(</span><span class="lit">8</span><span class="pun">)))</span></li><li class="L3"><span class="kwd">print</span><span class="pun">(</span><span class="str">'-'</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">57</span><span class="pun">)</span></li><li class="L4"><span class="com"># Main program loop.</span></li><li class="L5"><span class="kwd">while</span><span class="pln"> </span><span class="kwd">True</span><span class="pun">:</span></li><li class="L6"><span class="pln">    </span><span class="com"># Read all the ADC channel values in a list.</span></li><li class="L7"><span class="pln">    values </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="lit">0</span><span class="pun">]*</span><span class="lit">8</span></li><li class="L8"><span class="pln">    </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> range</span><span class="pun">(</span><span class="lit">8</span><span class="pun">):</span></li><li class="L9"><span class="pln">        </span><span class="com"># The read_adc function will get the value of the specified channel (0-7).</span></li><li class="L0"><span class="pln">        values</span><span class="pun">[</span><span class="pln">i</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> mcp</span><span class="pun">.</span><span class="pln">read_adc</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)</span></li><li class="L1"><span class="pln">    </span><span class="com"># Print the ADC values.</span></li><li class="L2"><span class="pln">    </span><span class="kwd">print</span><span class="pun">(</span><span class="str">'| {0:&gt;4} | {1:&gt;4} | {2:&gt;4} | {3:&gt;4} | {4:&gt;4} | {5:&gt;4} | {6:&gt;4} | {7:&gt;4} |'</span><span class="pun">.</span><span class="pln">format</span><span class="pun">(*</span><span class="pln">values</span><span class="pun">))</span></li><li class="L3"><span class="pln">    </span><span class="com"># Pause for half a second.</span></li><li class="L4"><span class="pln">    time</span><span class="pun">.</span><span class="pln">sleep</span><span class="pun">(</span><span class="lit">0.5</span><span class="pun">)</span></li></ol></pre>
+</div>
+<div class="row-fluid build-text">
+<p>The code might look a little complicated but most of that 
+complication is from printing the table. &nbsp;Notice this line that 
+reads an ADC channel value and saves it in a list:</p>
+<p><strong>values[i] = mcp.read_adc(i)</strong></p>
+<p>This line is calling the <strong>read_adc()</strong> function from 
+the MCP3008 Python library. &nbsp;The function takes one parameter, the 
+channel number to read (a value of 0 to 7). &nbsp;As a result the 
+function will return the current ADC value of that channel.</p>
+<p>Reading an ADC channel in your own code is as easy as calling the <strong>read_adc()</strong>
+ function! &nbsp;Pass in the channel to read and it will return the 
+value. &nbsp;That's all there really is to using the MCP3008 library to 
+read an analog value!</p>
+<p>If you're curious you can examine and run the <a href="https://github.com/adafruit/Adafruit_Python_MCP3008/blob/master/examples/differential.py">differential.py</a>&nbsp;example
+ just like you ran simpletest.py. &nbsp;Modify the configuration to 
+suite your wiring, either software or hardware SPI. &nbsp;Then when you 
+run the example it will call the <strong>read_adc_difference()</strong> 
+function and use it to read the voltage difference between channel 0 and
+ 1 of the chip. &nbsp;Sometimes it's useful to read the difference of 
+two signals to help reduce noise and other artifacts from analog 
+signals.</p>
+<p>That's all there is to the MCP3008 Python library!</p>
+</div>
+<div class="page-navigation">
+<a class="previous-page" href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/overview">
+<i class="fa fa-chevron-left"></i>OVERVIEW
+</a> <a class="next-page" href="https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/ads1015-slash-ads1115">
+ADS1015 / ADS1115<i class="fa fa-chevron-right"></i>
+</a> <div class="clear"></div>
+</div>
+<span class="page-last-updated">
+This guide was first published on Feb 09, 2016. It was last
+updated on Oct 31, 2018.
+</span>
+<span class="page-last-updated">
+This page (MCP3008) was last updated on Feb 09, 2016.
+</span>
+</div>
+</div>
+</article>
+<div class="col-lg-two-and-half col-md-3 hidden-sm hidden-xs">
+<header class="sidebar-right">
+<div class="sidebar-right-content">
+<div class="product-wrapper">
+<div class="product-image">
+<a href="https://www.adafruit.com/product/856">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/856-01.jpg" alt="" class="img-responsive" data-error="/assets/missing%2Fmissing.png" height="233">
+</a> </div>
+<div class="product-details">
+<div class="product-title">MCP3008 - 8-Channel 10-Bit ADC With SPI Interface</div>
+<span class="product-price">$3.75</span>
+<a id="856-product" class="product-buy btn-primary " data-pid="856" data-qty="1" data-name="MCP3008 - 8-Channel 10-Bit ADC With SPI Interface" href="https://www.adafruit.com/product/856">Add to Cart</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<a href="https://www.adafruit.com/product/1083">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/1083-00.jpg" alt="" class="img-responsive" data-error="/assets/missing%2Fmissing.png" height="233">
+</a> </div>
+<div class="product-details">
+<div class="product-title">ADS1015 12-Bit ADC - 4 Channel with Programmable Gain Amplifier</div>
+<span class="product-price">$9.95</span>
+<a id="1083-product" class="product-buy btn-primary " data-pid="1083" data-qty="1" data-name="ADS1015 12-Bit ADC - 4 Channel with Programmable Gain Amplifier" href="https://www.adafruit.com/product/1083">Add to Cart</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<a href="https://www.adafruit.com/product/1085">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/1085-02.jpg" alt="" class="img-responsive" data-error="/assets/missing%2Fmissing.png" height="233">
+</a> </div>
+<div class="product-details">
+<div class="product-title">ADS1115 16-Bit ADC - 4 Channel with Programmable Gain Amplifier</div>
+<span class="product-price">$14.95</span>
+<a id="1085-product" class="product-buy btn-primary " data-pid="1085" data-qty="1" data-name="ADS1115 16-Bit ADC - 4 Channel with Programmable Gain Amplifier" href="https://www.adafruit.com/product/1085">Add to Cart</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<a href="https://www.adafruit.com/product/2358">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/2358-02.jpg" alt="" class="img-responsive" data-error="/assets/missing%2Fmissing.png" height="233">
+</a> </div>
+<div class="product-details">
+<div class="product-title">Raspberry Pi 2 - Model B v1.2 - ARM Cortex-A53 with 1G RAM</div>
+<span class="product-price">$39.95</span>
+<a id="2358-product" class="notify product-buy btn-primary " data-pid="2358" data-qty="1" data-name="Raspberry Pi 2 - Model B v1.2 - ARM Cortex-A53 with 1G RAM" href="https://www.adafruit.com/product/2358">Out of Stock</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<a href="https://www.adafruit.com/product/2885">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/2885-06.jpg" alt="" class="img-responsive" data-error="/assets/missing%2Fmissing.png" height="233">
+</a> </div>
+<div class="product-details">
+<div class="product-title">Raspberry Pi Zero - Version 1.3</div>
+<span class="product-price">$5.00</span>
+<a id="2885-product" class="product-buy btn-primary " data-pid="2885" data-qty="1" data-name="Raspberry Pi Zero - Version 1.3" href="https://www.adafruit.com/product/2885">Add to Cart</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<a href="https://www.adafruit.com/product/2029">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/2029-00.jpg" alt="" class="img-responsive" data-error="/assets/missing%2Fmissing.png" height="233">
+</a> </div>
+<div class="product-details">
+<div class="product-title">Assembled Pi Cobbler Plus - Breakout Cable</div>
+<span class="product-price">$6.95</span>
+<a id="2029-product" class="product-buy btn-primary " data-pid="2029" data-qty="1" data-name="Assembled Pi Cobbler Plus - Breakout Cable" href="https://www.adafruit.com/product/2029">Add to Cart</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<a href="https://www.adafruit.com/product/239">
+<img src="AnalogDigitalConverter_MCP3008_fichiers/239-05.jpg" alt="" class="img-responsive" data-error="/assets/missing%2Fmissing.png" height="233">
+</a> </div>
+<div class="product-details">
+<div class="product-title">Full sized breadboard</div>
+<span class="product-price">$5.95</span>
+<a id="239-product" class="product-buy btn-primary " data-pid="239" data-qty="1" data-name="Full sized breadboard" href="https://www.adafruit.com/product/239">Add to Cart</a>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</header>
+</div>
+</div>
+</div>
+<div class="related-guides-wrapper container">
+<div class="guide-group border">
+<div class="header">
+<h3>Related Guides</h3>
+</div>
+<div class="guide-preview">
+<div class="image-container">
+<a href="https://learn.adafruit.com/how-to-use-matlab-and-simulink-with-raspberry-pi">
+<img class="image-preview" data-error="/assets/missing%2Fmissing.png" src="AnalogDigitalConverter_MCP3008_fichiers/RaspberryPiHOme.PNG">
+<div class="tagline">
+How to use MATLAB and Simulink to communicate with a Raspberry Pi
+</div>
+</a> </div>
+<div class="title">
+<a href="https://learn.adafruit.com/how-to-use-matlab-and-simulink-with-raspberry-pi">
+Set up and Blink - MATLAB and Simulink with Raspberry Pi
+</a> </div>
+<div class="author">by
+<a href="https://learn.adafruit.com/users/iLoveMATLAB">
+<span class="name">Anuja Apte</span>
+</a> </div>
+</div>
+<div class="guide-preview">
+<div class="image-container">
+<a href="https://learn.adafruit.com/3-dot-5-pitft-octoprint-rig">
+<img class="image-preview" data-error="/assets/missing%2Fmissing.png" src="AnalogDigitalConverter_MCP3008_fichiers/hero-printer-03.jpg">
+<div class="tagline">
+Turn your Raspberry Pi into a OctoPrint Rig!
+</div>
+</a> </div>
+<div class="title">
+<a href="https://learn.adafruit.com/3-dot-5-pitft-octoprint-rig">
+3.5" PiTFT OctoPrint Rig
+</a> </div>
+<div class="author">by
+<a href="https://learn.adafruit.com/users/pixil3d">
+<span class="name">Ruiz Brothers</span>
+</a> </div>
+</div>
+<div class="guide-preview">
+<div class="image-container">
+<a href="https://learn.adafruit.com/raspipe-a-raspberry-pi-pipeline-viewer-part-2">
+<video class="video-preview" preload="auto" muted="muted" loop="loop" autoplay="autoplay" data-error="/assets/missing%2Fmissing.png">
+<source src="AnalogDigitalConverter_MCP3008_fichiers/MVI_5346_56-179.mp4">
+<source src="AnalogDigitalConverter_MCP3008_fichiers/MVI_5346_56-179.webm" type="video/webm; codecs=vp8,vorbis">
+Your browser does not support the video tag.
+</video>
+<div class="tagline">
+An exploration of network communication from the shell using Pygame and the PiTFT.
+</div>
+</a> </div>
+<div class="title">
+<a href="https://learn.adafruit.com/raspipe-a-raspberry-pi-pipeline-viewer-part-2">
+RasPipe: A Raspberry Pi Pipeline Viewer, Part 2
+</a> </div>
+<div class="author">by
+<a href="https://learn.adafruit.com/users/bpb">
+<span class="name">Brennen Bearnes</span>
+</a> </div>
+</div>
+<div class="guide-preview">
+<div class="image-container">
+<a href="https://learn.adafruit.com/adafruit-piuart-usb-console-and-power-add-on-for-raspberry-pi">
+<img class="image-preview" data-error="/assets/missing%2Fmissing.png" src="AnalogDigitalConverter_MCP3008_fichiers/thumb.jpg">
+<div class="tagline">
+Power! Data! Pi Time!
+</div>
+</a> </div>
+<div class="title">
+<a href="https://learn.adafruit.com/adafruit-piuart-usb-console-and-power-add-on-for-raspberry-pi">
+Adafruit PiUART - USB Console and Power Add-on for Raspberry Pi
+</a> </div>
+<div class="author">by
+<a href="https://learn.adafruit.com/users/adafruit2">
+<span class="name">lady ada</span>
+</a> </div>
+</div>
+</div>
+</div>
+<div class="footer-spacer"></div>
+</div>
+<div class="modal fade" id="notify-modal">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<a href="#" class="close" data-dismiss="modal">×</a>
+<h5>OUT OF STOCK NOTIFICATION</h5>
+</div>
+<div class="modal-body">
+<p class="notify-modal-form-header"></p>
+<div class="notify-modal-products"></div>
+<form id="notify-modal-form" name="back_in_stock_notification">
+<p class="notify-modal-form-notice"></p>
+<div class="notify-modal-break"></div>
+<div class="form-group">
+<label class="inputLabel" for="name">YOUR NAME</label>
+<input size="25" maxlength="64" name="name" type="text">
+</div>
+<div class="form-group">
+<label class="inputLabel" for="email">YOUR EMAIL</label>
+<input size="25" maxlength="96" name="email" type="email">
+</div>
+<input name="daigo" style="display:none;" type="text">
+<input name="notify_me" value="true" type="hidden">
+</form>
+<div id="notify-modal-success" style="display:none">
+<p>You have been successfully subscribed to the Notification List for 
+this product and will therefore receive an e-mail from us when it is 
+back in stock!</p>
+<p>For security reasons, an e-mail has been sent to you acknowledging 
+your subscription. Please remember that this subscription will not 
+result in you receiving any e-mail from us about anything other than the
+ restocking of this item.</p>
+<p>If, for any reason, you would like to unsubscribe from the 
+Notification List for this product you will find details of how to do so
+ in the e-mail that has just been sent to you!</p>
+</div>
+</div>
+<div class="modal-footer">
+<a href="#" id="close-notify" style="display: none" data-dismiss="modal" data-target="#notify-modal">CLOSE</a>
+<a href="#" id="submit-notify" rel="nofollow" class="blue-button">NOTIFY ME</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer id="adafruit-footer">
+<div id="footer-content" class="container">
+<div class="row">
+<div class=" col-lg-6 col-md-6 col-sm-4 col-xs-12">
+<nav>
+<ul>
+<li><a href="https://www.adafruit.com/contact_us">CONTACT</a></li>
+<li><a href="https://www.adafruit.com/support">SUPPORT</a>
+</li><li><a href="https://www.adafruit.com/distributors">DISTRIBUTORS</a></li>
+<li><a href="https://www.adafruit.com/educators">EDUCATORS</a></li>
+<li><a href="https://www.adafruit.com/jobs">JOBS</a></li>
+<li><a href="https://www.adafruit.com/faq">FAQ</a></li>
+<li><a href="https://www.adafruit.com/shippinginfo/">SHIPPING &amp; RETURNS</a></li>
+<li><a href="https://www.adafruit.com/terms_of_service/">TERMS OF SERVICE</a></li>
+<li><a href="https://www.adafruit.com/privacy">PRIVACY &amp; LEGAL</a></li>
+<li><a href="https://www.adafruit.com/about">ABOUT US</a></li>
+</ul>
+</nav>
+<div id="footer-copyright">
+<a href="http://nytm.org/made-in-nyc/">ENGINEERED IN NYC</a> <span>Adafruit&nbsp;®</span>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-8 hidden-xs">
+<div id="footer-quote" class="">
+"Premature optimization is the root of all evil"
+<span class="quote-author">- <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a></span>
+</div>
+</div>
+<div id="footer-seals">
+<img class="img-responsive" src="AnalogDigitalConverter_MCP3008_fichiers/seals_2x.jpg">
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+
+</body></html>
